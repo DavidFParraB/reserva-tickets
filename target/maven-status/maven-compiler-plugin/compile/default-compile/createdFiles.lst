@@ -1,0 +1,11 @@
+meli/reserva/tickets/repository/ShowRepository.class
+meli/reserva/tickets/service/ReservaService.class
+meli/reserva/tickets/model/Butaca.class
+meli/reserva/tickets/model/Ubicacion.class
+meli/reserva/tickets/model/Show.class
+meli/reserva/tickets/service/ShowService.class
+meli/reserva/tickets/service/Impl/ShowServiceImpl.class
+meli/reserva/tickets/service/Impl/RerservaServiceImpl.class
+meli/reserva/tickets/ReservaTicketsApplication.class
+meli/reserva/tickets/controller/ShowController.class
+meli/reserva/tickets/controller/ReservaController.class
