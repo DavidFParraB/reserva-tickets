@@ -1,13 +1,16 @@
 package meli.reserva.tickets.service.Impl;
 
+import org.springframework.stereotype.Service;
+
 import meli.reserva.tickets.model.Show;
 import meli.reserva.tickets.repository.ShowRepository;
 import meli.reserva.tickets.service.ShowService;
 import reactor.core.publisher.Flux;
 
+@Service
 public class ShowServiceImpl implements ShowService {
 
-	ShowServiceImpl(ShowRepository showRepository) {
+	public ShowServiceImpl(ShowRepository showRepository) {
 		this.showRepository = showRepository;
 	}
 

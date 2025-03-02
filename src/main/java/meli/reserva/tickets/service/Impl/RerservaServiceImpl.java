@@ -34,8 +34,8 @@ public class RerservaServiceImpl {
 			ubicacion.setDisponibles(ubicacion.getDisponibles() - 1);
 
 			return showRepository.save(show).map(showActualizado -> {
-				// Puedes agregar lógica adicional aquí, como registrar la reserva en otra
-				// colección
+				// Registrar reserva. Si se requiere. 
+				
 				return true;
 			});
 		});

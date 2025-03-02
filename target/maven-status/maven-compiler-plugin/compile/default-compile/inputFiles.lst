@@ -1,4 +1,5 @@
 /home/davidbeltran/Documentos/Personal/Prueba/reserva-tickets/src/main/java/meli/reserva/tickets/ReservaTicketsApplication.java
+/home/davidbeltran/Documentos/Personal/Prueba/reserva-tickets/src/main/java/meli/reserva/tickets/config/FirestoreConfig.java
 /home/davidbeltran/Documentos/Personal/Prueba/reserva-tickets/src/main/java/meli/reserva/tickets/controller/ReservaController.java
 /home/davidbeltran/Documentos/Personal/Prueba/reserva-tickets/src/main/java/meli/reserva/tickets/controller/ShowController.java
 /home/davidbeltran/Documentos/Personal/Prueba/reserva-tickets/src/main/java/meli/reserva/tickets/model/Butaca.java

@@ -9,8 +9,8 @@ import lombok.Data;
 @Data
 public class Show {
 
-    @DocumentId
-    private String showId;
-    private String fechaPresentacion;
-    private List<Ubicacion> ubicacion;
+	@DocumentId
+	private String showId;
+	private String fechaPresentacion;
+	private List<Ubicacion> ubicacion;
 }

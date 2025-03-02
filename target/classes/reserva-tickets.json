@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "clever-span-452523-f2",
+  "private_key_id": "2186a4321752f672aaefc6261242b79a1c41ae70",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCw2TO8RPBXBsUG\nBmvr76tk/iNhoJYvf+JhGo+qjksfEzSOjbkA1nYnsPwQbMlEfSsS4I3MlT8gbMPj\nEd/ajz5pNayMdZSF1eY4dHBE8UMBwTc/Th7HN1lyGZxsEzS0hCLRiK0e338GY42D\n3bErRPpYE9aqS9I6HrmJh6aROPw3e8jR92ZKya7+xFkMYh8CoI3qdKB3f0WOgAUa\nIdRdKQBjJu5/r/mxc/+rbNUi1/j0r51i0C5baZAoEP33C8EHePKkGen1djZAFdr+\nHzJ2GBVelQkgUezrnYH5LLhx95A+qjsCXhL1vqqx9AKS4Ya6WiGa3U2zhIPiGyqM\nI/5X/P1DAgMBAAECggEABrIU04Ie9/Nk8x4psd6xj40rsFXaAvfOsjx77EoxdseW\np2QxZtABAO5G7NxGH6i09zcAa/YTL6OFbWdPIWX6I18JlGT3006FfQn8r+ZlZFrm\n0nDoT/tzx1v+4EXJTzPGq/0Y5E59E/1GW10K9pm2ZeVLiFo1sGuj84pYitNRE5XH\nV5s+EAdBegaoqUtc8KLIVs+Ekho5HkRMwb7S/RDtYAsfj76F3MFrL8g3e77ztUQO\no5GRIi5PJgDh54OM0K9hh5XrrZYT2J9Hy7P0OnsgWsllvuvV3TMl/IYfcPrIKB10\n2StVavaT11DOnejrOsfg/57RlINr6RMWECVHFrInqQKBgQDiLmH5Qh+DgPT3EYLA\ngCVsW0LyrJgUKzjJKgo+IQWCAaUjkgQhbT6+unZKGyRt+B9STynzL4q9QRwPhiSE\ndLo9PfUxTvw51mqo+PSlTZ5JTUJuU8JC00iNr0Vjt8gXcXzlpsObjIEsS+JM8I7l\nZjzC2U9so0c7vvVEHYbcTKOIBwKBgQDIKdbIaqVEyKetzT0GhL/6pXqzRTpP8zCj\nD7D8wVuHmIFgZQDid20a98ZobU+FqHkTF8FHPTOvmYe1/o5i022yOAXvGjtJStny\nwzS6czlvQEMePLklqZFVxq/Im9RqZb/5fBGz2qvZb+vtCY7HrkLrDGNDVnDLdDZd\nMGFmyg955QKBgFedlhBDYAfF7Z7Dpr3BJj4KQC3XU/YEJDQw19TnX8XTs0/LIVR9\niB/EBUyBpSQASMnOprZwhTL4xNDyqrSwrvBITvHx4dzZxWl9Pu/F2HoWtpQcWBUg\n2WshKSUOrTD/ol0ns4BO9j7dimU5jnEooILuQUkZGt/3AfWH5pTyDysDAoGABurz\nQl/1MEhjCy2xszz5SZdYg0OcPVEhWDFdo46nNCuAJS24dxs7iRgRImDMw8jLzm4e\nvvCNjb8XoqGWmDHIc8Vd5yKX8/ODTtGSS/NZg8/LwgrFN1kB7d39C0jfcYHsvZmd\nHwMqt0wX8kxHQ/1w0KDP+W7OXSm6C0R1yVCockUCgYEA3vq5NswwAXc2wx7uwxoY\nx9Wo2v1oDLqO83hx+ZkV/e3t9vc4okBVZYujH19wPs0SJWVIcvA62dRx3XcdHFBI\nPtiV6iTpGlylBsua184CIElPt90/9TwKG9zAhnayXpgP2zq/vX/NOUwp4+6w4CBI\ny9vfvLAfb9vMpyC11irbNBY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "reserva-tickets@clever-span-452523-f2.iam.gserviceaccount.com",
+  "client_id": "112192328836235216452",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/reserva-tickets%40clever-span-452523-f2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
