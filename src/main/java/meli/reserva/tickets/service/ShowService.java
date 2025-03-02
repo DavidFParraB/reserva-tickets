@@ -5,4 +5,6 @@ import reactor.core.publisher.Flux;
 
 public interface ShowService {
 	Flux<Show> getAllShows();
+
+	void saveShow(Show show);
 }
