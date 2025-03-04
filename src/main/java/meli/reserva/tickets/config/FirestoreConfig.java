@@ -13,10 +13,13 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 
+import lombok.extern.log4j.Log4j2;
+
 @Configuration
+@Log4j2
 public class FirestoreConfig {
 
-	@Value("classpath:/home/davidbeltran/Documentos/Personal/Prueba/reserva-tickets/src/main/resources/reserva-tickets.json")
+	@Value("${gcp.authentication.token.file.path:default}")
 	private Resource privateKey;
 
 	@Bean
@@ -29,7 +32,7 @@ public class FirestoreConfig {
 			FirebaseApp firebaseApp = FirebaseApp.initializeApp(firebaseOptions);
 			return FirestoreClient.getFirestore(firebaseApp);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("Failed to initialize Firestore: ", e);
 		}
 		return null;
 
