@@ -10,7 +10,11 @@ import reactor.core.publisher.Mono;
 @RestController
 public class ReservaController {
 
-	private ReservaService reservaService;
+	private final ReservaService reservaService;
+
+	public ReservaController(ReservaService reservaService) {
+		this.reservaService = reservaService;
+	}
 
 	@PostMapping("/reservar")
 	public Mono<Boolean> reservar(@RequestParam String showId, @RequestParam String ubicacionNombre,

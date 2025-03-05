@@ -6,10 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 import meli.reserva.tickets.model.Butaca;
 import meli.reserva.tickets.model.Ubicacion;
 import meli.reserva.tickets.repository.ShowRepository;
+import meli.reserva.tickets.service.ReservaService;
 import reactor.core.publisher.Mono;
 
 @Service
-public class RerservaServiceImpl {
+public class RerservaServiceImpl implements ReservaService {
 
 	private ShowRepository showRepository;
 
@@ -18,7 +19,7 @@ public class RerservaServiceImpl {
 	}
 
 	@Transactional
-	public Mono<Boolean> reservarButaca(String showId, String ubicacionNombre, String nroSilla) {
+	public Mono<Boolean> reservaTickets(String showId, String ubicacionNombre, String nroSilla) {
 		return showRepository.findByShow(showId).flatMap(show -> {
 			Ubicacion ubicacion = show.getUbicacion().stream().filter(u -> u.getNombre().equals(ubicacionNombre))
 					.findFirst().orElseThrow(() -> new RuntimeException("Ubicación no encontrada"));
