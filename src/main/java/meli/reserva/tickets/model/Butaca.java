@@ -9,6 +9,5 @@ public class Butaca {
 
     @JsonProperty("nro_silla")
     private String nroSilla;
-    private int valor;
     private boolean disponible;
 }

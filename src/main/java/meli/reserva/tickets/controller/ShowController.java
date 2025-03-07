@@ -30,6 +30,11 @@ public class ShowController {
 		return showService.findShowById(showId);
 	}
 
+	@GetMapping("/shows/{fechaInicio}/{fechaFin}")
+	public Flux<Show> getShowsByFilter(@PathVariable String fechaInicio, @PathVariable String fechaFin) {
+		return showService.findShowsByFecha(fechaInicio, fechaFin);
+	}
+
 	@PostMapping(("/shows"))
 	public String fillShows(@RequestBody Show show) {
 		showService.saveShow(show);

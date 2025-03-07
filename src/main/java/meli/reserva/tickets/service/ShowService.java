@@ -10,4 +10,6 @@ public interface ShowService {
 	Mono<Show> findShowById(String show);
 
 	void saveShow(Show show);
+
+	Flux<Show> findShowsByFecha(String fechaInicio, String fechaFin);
 }
