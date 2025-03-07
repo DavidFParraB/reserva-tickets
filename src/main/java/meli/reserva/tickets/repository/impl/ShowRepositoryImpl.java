@@ -24,6 +24,7 @@ public class ShowRepositoryImpl {
 
     private static final String COLLECTION_NAME = "shows";
     private static final String FIELD_FECHA_PRESENTACION = "fechaPresentacion";
+    private static final String FIELD_PRICE = "ubicacion.precio";
 
     public Flux<Show> findShowsByFecha(String fechaInicio, String fechaFin) {
 
@@ -33,8 +34,8 @@ public class ShowRepositoryImpl {
         ApiFuture<QuerySnapshot> future = firestore.collection(COLLECTION_NAME)
                 .whereGreaterThanOrEqualTo(FIELD_FECHA_PRESENTACION, fechaInicio)
                 .whereLessThanOrEqualTo(FIELD_FECHA_PRESENTACION, fechaFin)
-                .whereGreaterThanOrEqualTo("ubicacion.precio", 50)
-                .whereLessThanOrEqualTo("ubicacion.precio", 1000)
+                // .whereGreaterThanOrEqualTo(FIELD_PRICE, 50)
+                // .whereLessThanOrEqualTo(FIELD_PRICE, 2000)
                 .orderBy(FIELD_FECHA_PRESENTACION, Query.Direction.ASCENDING)
                 .get();
         try {
