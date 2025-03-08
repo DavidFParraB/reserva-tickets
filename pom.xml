@@ -64,6 +64,7 @@
 			<groupId>com.google.cloud</groupId>
 			<artifactId>spring-cloud-gcp-data-firestore</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>

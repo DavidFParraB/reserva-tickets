@@ -1,15 +1,14 @@
 package meli.reserva.tickets.service;
 
+import java.util.List;
+
+import meli.reserva.tickets.dto.Filter;
 import meli.reserva.tickets.model.Show;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 public interface ShowService {
-	Flux<Show> getAllShows();
+	Boolean saveShow(Show show);
 
-	Mono<Show> findShowById(String show);
-
-	void saveShow(Show show);
-
-	Flux<Show> findShowsByFecha(String fechaInicio, String fechaFin);
+	List<Show> getShowsByFilter(Filter filter);
+	
+	Show getShowById(String showId);
 }

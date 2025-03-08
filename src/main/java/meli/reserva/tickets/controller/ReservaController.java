@@ -1,24 +1,43 @@
 package meli.reserva.tickets.controller;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.log4j.Log4j2;
 import meli.reserva.tickets.model.Book;
-import meli.reserva.tickets.service.ReservaService;
+import meli.reserva.tickets.service.BookService;
+import meli.reserva.tickets.service.ValidationService;
 import reactor.core.publisher.Mono;
 
 @RestController
+@Log4j2
 public class ReservaController {
 
-	private final ReservaService reservaService;
+	private final BookService reservaService;
+	private final ValidationService validateService;
 
-	public ReservaController(ReservaService reservaService) {
+	public ReservaController(BookService reservaService, ValidationService validateService) {
 		this.reservaService = reservaService;
+		this.validateService = validateService;
 	}
 
 	@PostMapping("/reservar")
-	public Mono<Boolean> reservar(@RequestBody Book bookIn) {
+	public Mono<Boolean> reservar(@RequestBody Book bookIn, @RequestHeader("Authorization") String authorizationHeader)
+			throws ExecutionException, InterruptedException {
+		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+			return Mono.error(new RuntimeException("Invalid or missing Authorization header"));
+		}
+
+		String token = authorizationHeader.substring(7);
+		log.info("Token in: {}", token);
+		if (!validateService.validateAppUser(token)) {
+			return Mono.error(new RuntimeException("Invalid token"));
+		}
+
 		return reservaService.reservaTickets(bookIn);
 	}
 }

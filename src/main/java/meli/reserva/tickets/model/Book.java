@@ -20,7 +20,7 @@ public class Book {
     private String location;
     @JsonProperty("seat_number")
     private String seatNumber;
-    private Integer price;
+    private Float price;
     @JsonProperty("book_date")
     private Date bookDate;
 }
