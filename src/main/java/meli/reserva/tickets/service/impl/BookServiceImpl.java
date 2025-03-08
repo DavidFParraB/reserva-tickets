@@ -35,7 +35,18 @@ public class BookServiceImpl implements BookService {
 
 	@Transactional
 	public Mono<String> reservaTickets(Book bookIn) throws ExecutionException, InterruptedException {
-		ApiFuture<String> transactionResult = firestore.runTransaction(transaction -> {
+		ApiFuture<String> transactionResult = null;
+		if (bookIn.getSeatNumber() != null) {
+			transactionResult = reserveWithSeatNumber(bookIn);
+		} else {
+			transactionResult = reserveWithOutSeatNumber(bookIn);
+		}
+
+		return Mono.just(transactionResult.get());
+	}
+
+	private ApiFuture<String> reserveWithSeatNumber(Book bookIn) {
+		return firestore.runTransaction(transaction -> {
 			try {
 
 				DocumentReference seatRef = firestore.collection(Utils.SHOWS_COLLECTION).document(bookIn.getShow())
@@ -76,8 +87,36 @@ public class BookServiceImpl implements BookService {
 				return "OTHER_ERROR";
 			}
 		});
+	}
 
-		return Mono.just(transactionResult.get());
+	private ApiFuture<String> reserveWithOutSeatNumber(Book bookIn) {
+		return firestore.runTransaction(transaction -> {
+			try {
+
+				DocumentReference locationRef = firestore.collection(Utils.SHOWS_COLLECTION).document(bookIn.getShow())
+						.collection(Utils.LOCATION_COLLECTION).document(bookIn.getLocation());
+
+				DocumentSnapshot locationSnapshot = transaction.get(locationRef).get();
+				Location location = locationSnapshot.toObject(Location.class);
+
+				if (location == null) {
+					log.error("Location not found for ID: {}", bookIn.getLocation());
+					return "LOCATION_NOT_FOUND";
+				}
+
+				location.setAvailable(location.getAvailable() - 1);
+				transaction.set(locationRef, location);
+				log.info("Location: {} - disponibles: {}", location.getName(), location.getAvailable());
+
+				doBook(bookIn, location);
+				return "OK"; // Reserva exitosa
+
+			} catch (Exception e) {
+				log.error("Transaction failed: ", e);
+				return "OTHER_ERROR";
+			}
+		});
+
 	}
 
 	void doBook(Book bookIn, Location location) {

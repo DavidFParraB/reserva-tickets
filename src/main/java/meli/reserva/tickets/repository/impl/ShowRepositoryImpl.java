@@ -99,7 +99,9 @@ public class ShowRepositoryImpl implements ShowRepository {
 			DocumentSnapshot document = future.get();
 
 			if (document.exists()) {
-				return document.toObject(Show.class);
+				Show show = document.toObject(Show.class);
+				show.setLocations(locationRepository.locationsByShowAndFilter(show.getShow(), null));
+				return show;
 			} else {
 				return null;
 			}

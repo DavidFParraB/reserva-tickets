@@ -26,16 +26,16 @@ public class ReservaController {
 	}
 
 	@PostMapping("/reservar")
-	public Mono<Boolean> reservar(@RequestBody Book bookIn, @RequestHeader("Authorization") String authorizationHeader)
+	public Mono<String> reservar(@RequestBody Book bookIn, @RequestHeader("Authorization") String authorizationHeader)
 			throws ExecutionException, InterruptedException {
 		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-			return Mono.error(new RuntimeException("Invalid or missing Authorization header"));
+			return Mono.just("AUTHORIZATION_NOT_FOUND");
 		}
 
 		String token = authorizationHeader.substring(7);
 		log.info("Token in: {}", token);
 		if (Boolean.FALSE.equals(validateService.validateAppUser(token))) {
-			return Mono.error(new RuntimeException("Invalid token"));
+			return Mono.just("INVALID_TOKEN");
 		}
 
 		return reservaService.reservaTickets(bookIn);
