@@ -13,6 +13,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 
 import lombok.extern.log4j.Log4j2;
+import meli.reserva.tickets.Utils;
 import meli.reserva.tickets.model.Book;
 import meli.reserva.tickets.model.Location;
 import meli.reserva.tickets.model.Seat;
@@ -33,27 +34,28 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Transactional
-	public Mono<Boolean> reservaTickets(Book bookIn) throws ExecutionException, InterruptedException {
-		ApiFuture<Boolean> transactionResult = firestore.runTransaction(transaction -> {
+	public Mono<String> reservaTickets(Book bookIn) throws ExecutionException, InterruptedException {
+		ApiFuture<String> transactionResult = firestore.runTransaction(transaction -> {
 			try {
 
-				DocumentReference seatRef = firestore.collection("shows").document(bookIn.getShow())
-						.collection("locations").document(bookIn.getLocation()).collection("seats")
-						.document(bookIn.getSeatNumber());
+				DocumentReference seatRef = firestore.collection(Utils.SHOWS_COLLECTION).document(bookIn.getShow())
+						.collection(Utils.LOCATION_COLLECTION).document(bookIn.getLocation())
+						.collection(Utils.SEAT_COLLECTION).document(bookIn.getSeatNumber());
 				DocumentSnapshot seatSnapshot = transaction.get(seatRef).get();
 				Seat seat = seatSnapshot.toObject(Seat.class);
 
 				if (seat != null && seat.getAvailable()) {
 					log.info("Seat: {} - available: {}", seat.getSeatNumber(), seat.getAvailable());
-					DocumentReference locationRef = firestore.collection("shows").document(bookIn.getShow())
-							.collection("locations").document(bookIn.getLocation());
+					DocumentReference locationRef = firestore.collection(Utils.SHOWS_COLLECTION)
+							.document(bookIn.getShow()).collection(Utils.LOCATION_COLLECTION)
+							.document(bookIn.getLocation());
 
 					DocumentSnapshot locationSnapshot = transaction.get(locationRef).get();
 					Location location = locationSnapshot.toObject(Location.class);
 
 					if (location == null) {
 						log.error("Location not found for ID: {}", bookIn.getLocation());
-						return false;
+						return "LOCATION_NOT_FOUND";
 					}
 					seat.setAvailable(Boolean.FALSE);
 					transaction.set(seatRef, seat);
@@ -64,14 +66,14 @@ public class BookServiceImpl implements BookService {
 
 					doBook(bookIn, location);
 
-					return true; // Reserva exitosa
+					return "OK"; // Reserva exitosa
 				} else {
 					log.warn("Seat not available or not found: {}", bookIn.getSeatNumber());
-					return false; // Butaca no disponible
+					return "SEAT_NOT_AVAILABLE"; // Butaca no disponible
 				}
 			} catch (Exception e) {
 				log.error("Transaction failed: ", e);
-				return false;
+				return "OTHER_ERROR";
 			}
 		});
 
