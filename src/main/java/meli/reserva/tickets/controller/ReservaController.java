@@ -34,7 +34,7 @@ public class ReservaController {
 
 		String token = authorizationHeader.substring(7);
 		log.info("Token in: {}", token);
-		if (!validateService.validateAppUser(token)) {
+		if (Boolean.FALSE.equals(validateService.validateAppUser(token))) {
 			return Mono.error(new RuntimeException("Invalid token"));
 		}
 

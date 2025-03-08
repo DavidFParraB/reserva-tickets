@@ -30,12 +30,12 @@ public class ShowController {
 	@GetMapping("/show")
 	public ResponseEntity<List<Show>> getShows(@RequestHeader("Authorization") String authorizationHeader) {
 		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-			return new ResponseEntity<List<Show>>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 
 		String token = authorizationHeader.substring(7);
-		if (!validationService.validateUser(token)) {
-			return new ResponseEntity<List<Show>>(HttpStatus.UNAUTHORIZED);
+		if (Boolean.FALSE.equals(validationService.validateUser(token))) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 
 		return ResponseEntity.ok(showService.getShowsByFilter(null));
@@ -45,12 +45,12 @@ public class ShowController {
 	public ResponseEntity<Show> showById(@PathVariable String showId,
 			@RequestHeader("Authorization") String authorizationHeader) {
 		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-			return new ResponseEntity<Show>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 
 		String token = authorizationHeader.substring(7);
-		if (!validationService.validateUser(token)) {
-			return new ResponseEntity<Show>(HttpStatus.UNAUTHORIZED);
+		if (Boolean.FALSE.equals(validationService.validateUser(token))) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		return ResponseEntity.ok(showService.getShowById(showId));
 	}
@@ -59,12 +59,12 @@ public class ShowController {
 	public ResponseEntity<Boolean> fillShows(@RequestBody Show show,
 			@RequestHeader("Authorization") String authorizationHeader) {
 		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-			return new ResponseEntity<Boolean>(Boolean.FALSE, HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(Boolean.FALSE, HttpStatus.UNAUTHORIZED);
 		}
 
 		String token = authorizationHeader.substring(7);
-		if (!validationService.validateUser(token)) {
-			return new ResponseEntity<Boolean>(Boolean.FALSE, HttpStatus.UNAUTHORIZED);
+		if (Boolean.FALSE.equals(validationService.validateUser(token))) {
+			return new ResponseEntity<>(Boolean.FALSE, HttpStatus.UNAUTHORIZED);
 		}
 
 		return ResponseEntity.ok(showService.saveShow(show));
@@ -75,12 +75,12 @@ public class ShowController {
 			@RequestHeader("Authorization") String authorizationHeader) {
 
 		if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-			return new ResponseEntity<List<Show>>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 
 		String token = authorizationHeader.substring(7);
-		if (!validationService.validateUser(token)) {
-			return new ResponseEntity<List<Show>>(HttpStatus.UNAUTHORIZED);
+		if (Boolean.FALSE.equals(validationService.validateUser(token))) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		return ResponseEntity.ok(showService.getShowsByFilter(filter));
 	}
